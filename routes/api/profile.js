@@ -23,6 +23,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
     const errors = {};
 
     Profile.findOne({ user: req.user.id })
+        .populate('user', ['name', 'avatar']) // from ../../models/Profile.js -> 'user' -> Schema.Types.ObjectId , ref from 'users' collection
         .then(profile => {
             if (!profile) {
                 errors.noprofile = 'There is no profile for this user';
@@ -40,7 +41,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     const { errors, isValid } = validateProfileInput(req.body);
 
     // Check Validation
-    if(!isValid) {
+    if (!isValid) {
         // Return any errors with 400 status
         return res.status(400).json(errors);
     }
@@ -78,8 +79,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
                 // Create
 
                 // Check if handle exists
-                Profile.findOne({ handle: profileFields.handle}).then(profile => {
-                    if(profile) {
+                Profile.findOne({ handle: profileFields.handle }).then(profile => {
+                    if (profile) {
                         errors.handle = 'That handle already exists';
                         res.status(400).json(errors);
                     }
