@@ -120,3 +120,4 @@ const ProfileSchema = new Schema({
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
+// After created schema, next is setup routes/api/profile

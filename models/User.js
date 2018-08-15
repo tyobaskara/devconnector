@@ -25,3 +25,4 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
+// After created schema, next is setup routes/api/users
