@@ -47,7 +47,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         return res.status(400).json(errors);
     }
 
-    const newPost = new Post({
+    const newPost = new Post({ // use new Post because its model
         text: req.body.text,
         name: req.body.name,
         avatar: req.body.avatar,
