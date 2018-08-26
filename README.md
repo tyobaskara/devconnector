@@ -1,5 +1,4 @@
-# devconnector
-devconnector mern rebuild
+# reactjs - mongo - jwt auth - redux
 
 npm install
 npm run dev
